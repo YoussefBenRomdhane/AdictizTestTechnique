@@ -1,0 +1,82 @@
+// Common properties
+$flag-width: 50px;
+$flag-height: 25px;
+
+// Three thirds flag
+@function thirds($first, $second, $last, $or: 90deg) {
+  @return linear-gradient($or, $first 33.3%, $second 33.3%, $second 66.6%, $last 66.6%);
+}
+
+%flag {
+  width: $flag-width;
+  height: $flag-height;
+  border: 1px solid #999;
+  display: inline-block;
+  margin: 2em;
+  box-shadow: 1px 1px 1px #ccc;
+  transition: all 0.5s;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+}
+
+.flag--uk {
+  @extend %flag;
+  background: linear-gradient(
+      90deg,
+      transparent 46%,
+      red 46%,
+      red 56%,
+      transparent 56%
+    ),
+    linear-gradient(
+      transparent 38%,
+      white 38%,
+      white 42%,
+      red 42%,
+      red 58%,
+      white 58%,
+      white 62%,
+      transparent 62%
+    ),
+    linear-gradient(
+      90deg,
+      transparent 44%,
+      white 44%,
+      white 46%,
+      red 46%,
+      red 56%,
+      white 56%,
+      white 58%,
+      transparent 58%
+    ),
+    linear-gradient(
+      33deg,
+      transparent 45%,
+      white 45%,
+      white 48%,
+      red 48%,
+      red 54%,
+      white 54%,
+      white 57%,
+      transparent 57%
+    ),
+    linear-gradient(
+      -33deg,
+      mediumblue 45%,
+      white 45%,
+      white 48%,
+      red 48%,
+      red 54%,
+      white 54%,
+      white 57%,
+      mediumblue 57%
+    );
+}
+
+.flag--france {
+  @extend %flag;
+  background: thirds(mediumblue, white, red);
+}
+

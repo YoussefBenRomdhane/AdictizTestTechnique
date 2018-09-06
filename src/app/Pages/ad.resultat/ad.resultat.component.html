@@ -1,0 +1,83 @@
+
+<div class="card mb-4 box-shadow">
+  <img *ngIf="item.volumeInfo.imageLinks!==undefined" class="card-img-top" src="{{item.volumeInfo.imageLinks.thumbnail}}" alt="Card image cap"
+    height="225px" width="100%">
+  <img *ngIf="item.volumeInfo.imageLinks==undefined" class="card-img-top" src="http://www.nthephoto.com/images/notfound.jpg"
+    alt="Card image cap" height="225px" width="100%">
+
+  <div class="card-body">
+    <h5>{{(item.volumeInfo.title.length>30)?(item.volumeInfo.title | slice:0:10)+'...':(item.volumeInfo.title)}}</h5>
+    <span>{{ 'authors' | translate:authors }}:</span>
+    <small *ngIf="item.volumeInfo.authors!==undefined" class="text-muted">{{item.volumeInfo.authors}}</small>
+    <small *ngIf="item.volumeInfo.authors==undefined" class="text-muted">{{ 'unknown' | translate:unknown }}</small>
+    <br>
+    <span>{{ 'editor' | translate:editor }}:</span>
+    <small *ngIf="item.volumeInfo.publisher==undefined" class="text-muted">{{ 'unknown' | translate:unknown }}</small>
+    <small *ngIf="item.volumeInfo.publisher!==undefined" class="text-muted">{{item.volumeInfo.publisher}}</small>
+
+
+    <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left: 250px" (click)="openBackDropCustomClass(content)">{{ 'details' | translate:details }}</button>
+    <div class="d-flex justify-content-between align-items-center">
+
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{item.volumeInfo.title}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6 product_img">
+        <img *ngIf="item.volumeInfo.imageLinks!==undefined" src="{{item.volumeInfo.imageLinks.thumbnail}}">
+        <img *ngIf="item.volumeInfo.imageLinks==undefined" src="http://www.nthephoto.com/images/notfound.jpg" height="225px" width="100%">
+
+        <p class="card-text">
+          <span *ngIf="item.volumeInfo.authors==undefined"></span>
+          <span *ngIf="item.volumeInfo.authors!==undefined">{{ 'authors' | translate:authors }}:{{item.volumeInfo.authors}}</span>
+        </p>
+        <p>
+          <span *ngIf="item.volumeInfo.publisher==undefined"></span>
+          <span *ngIf="item.volumeInfo.publisher!==undefined">{{ 'editor' | translate:editor }}:{{item.volumeInfo.publisher}}</span>
+        </p>
+        <p>
+          <span *ngIf="item.volumeInfo.publishedDate==undefined"></span>
+          <span *ngIf="item.volumeInfo.publishedDate!==undefined">{{ 'publisheddate' | translate:publisheddate }}:{{item.volumeInfo.publishedDate}}</span>
+        </p>
+        <p>
+          <span *ngIf="item.volumeInfo.language==undefined"></span>
+          <span *ngIf="item.volumeInfo.language!==undefined">{{ 'Language' | translate:Language }}:{{item.volumeInfo.language}}</span>
+        </p>
+        <p>
+          <span *ngIf="item.volumeInfo.categories==undefined"></span>
+          <span *ngIf="item.volumeInfo.categories!==undefined">{{ 'Categories' | translate:Categories }}:{{item.volumeInfo.categories}}</span>
+        </p>
+        <div class="btn-group">
+          <p>
+            <span *ngIf="item.accessInfo.webReaderLink==undefined"></span>
+            <a *ngIf="item.accessInfo.webReaderLink!==undefined" class="btn btn-outline-info icofont icofont-link" href="{{item.accessInfo.webReaderLink}}"
+              role="button"></a>
+          </p>
+          <p>
+            <span *ngIf="item.accessInfo.pdf.isAvailable==false"></span>
+            <a *ngIf="item.accessInfo.pdf.isAvailable==true" class="btn btn-outline-danger icofont icofont-file-pdf" href="{{item.accessInfo.pdf.downloadLink}}"
+              role="button"></a>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 product_content">
+        <h4></h4>
+        <p>{{item.volumeInfo.description}}</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">{{ 'Close' | translate:Close }}</button>
+  </div>
+</ng-template>

@@ -1,0 +1,66 @@
+<nav class="navbar navbar-dark bg-primary">
+  <img src="../../../assets/images/logoadictiz.png" />
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+      <button type="button" class="btn btn-light flag--france" (click)="switchLanguage('fr')"></button>
+    <button type="button"  class="btn btn-light  flag--uk" (click)="switchLanguage('en')"></button>
+    
+  </div>
+</nav>
+
+<main role="main">
+
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1  class="jumbotron-heading">
+        {{ 'header-title' | translate:header-title }} </h1>
+       
+      <p class="lead text-muted"> {{ 'header-description' | translate:header-description }}</p>
+
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <app-adrecherche (someEvent)="rechercheLivre()" #child></app-adrecherche>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text icofont icofont-navigation-menu" id="basic-addon1"></span>
+
+        </div>
+        <select class="custom-select" [(ngModel)]="categorie">
+
+          <option value="" disabled selected>{{ 'choose-category' | translate:choose-category }}</option>
+          <option value="">{{ 'allCategory' | translate:allCategory }}</option>
+          <option value="Ocean travel">Ocean travel</option>
+          <option value="Children's stories">Children's stories</option>
+          <option value="Juvenile Fiction">Juvenile Fiction</option>
+          <option value="Comics & Graphic Novels">Comics & Graphic Novels</option>
+          <option value="Operas">Operas</option>
+          <option value="Fiction">Fiction</option>
+        </select>
+      </div>
+      <hr>
+      <div class="row" *ngIf="SearchedItems?.length>0">
+        <app-adresultat class="col-md-4" *ngFor="let item of SearchedItems  | parCategorie:categorie" [item]="item"></app-adresultat>
+      </div>
+      <div  *ngIf="SearchedItems?.length==0">
+          <div class="erreur">
+              <strong>{{ 'nobooksfound' | translate:nobooksfound }}</strong>
+            </div>
+      </div>
+      
+    </div>
+  </div>
+</main>
+
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Top</a>
+    </p>
+    <p>Adictiz &copy;</p>
+
+  </div>
+</footer>

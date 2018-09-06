@@ -1,0 +1,16 @@
+{
+    "header-title": " Book Search Engine",
+    "header-description": "Welcome to adictiz book store, you can find a variety of book choices.",
+    "choose-category": "Choose a category",
+    "allCategory": "All categories",
+    "nobooksfound": "No books found",
+    "authors": "Author(s)",
+    "unknown": "Unknown",
+    "editor": "Editor",
+    "details": "Details",
+    "publisheddate": "Published date",
+    "Language": "Language",
+    "Categories": "Categorie(s)",
+    "Close": "Close",
+    "searchinput":"Search book by : Title, Author, Editor and Categorie"
+}

@@ -1,0 +1,39 @@
+.erreur{
+
+    text-align:center; 
+    color: red; 
+    background-color: #e9ecef;
+    border-color: #e9ecef;
+}
+#flag {
+    width: 50px;
+    height: 25px;
+    text-align: center;
+    line-height: 50px;
+    border: 1px solid #bbb;
+    margin: 10px;
+    position: relative;
+    background: #fff;
+}
+
+#flag:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    background: #00f;
+    width: 33%;
+    z-index: 4;
+}
+#flag:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: #f00;
+    width: 33%;
+    z-index: 4;
+}
+

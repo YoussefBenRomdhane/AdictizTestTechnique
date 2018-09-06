@@ -1,0 +1,7 @@
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text icofont icofont-ui-search" id="basic-addon1"></span>
+    </div>
+    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="{{ 'searchinput' | translate:searchinput }}"
+        [(ngModel)]="searchedVal" (keyup)="callParentSearch()">
+</div>
